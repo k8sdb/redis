@@ -38,6 +38,7 @@ import (
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/client-go/kubernetes/fake"
 	clientSetScheme "k8s.io/client-go/kubernetes/scheme"
+	kmapi "kmodules.xyz/client-go/api/v1"
 	core_util "kmodules.xyz/client-go/core/v1"
 	"kmodules.xyz/client-go/meta"
 	mona "kmodules.xyz/monitoring-agent-api/api/v1"
@@ -285,6 +286,26 @@ var cases = []struct {
 		false,
 		false,
 	},
+	{"Edit spec.Init before provisioning complete",
+		requestKind,
+		"foo",
+		"default",
+		admission.Update,
+		updateInit(sampleRedis()),
+		sampleRedis(),
+		true,
+		true,
+	},
+	{"Edit spec.Init after provisioning complete",
+		requestKind,
+		"foo",
+		"default",
+		admission.Update,
+		updateInit(completeProvisioning(sampleRedis())),
+		sampleRedis(),
+		true,
+		false,
+	},
 }
 
 func sampleRedisWithoutMode() api.Redis {
@@ -313,6 +334,9 @@ func sampleRedisWithoutMode() api.Redis {
 				},
 			},
 			TerminationPolicy: api.TerminationPolicyDoNotTerminate,
+			Init: &api.InitSpec{
+				WaitForInitialRestore: true,
+			},
 		},
 	}
 }
@@ -350,7 +374,7 @@ func editSpecVersion(old api.Redis) api.Redis {
 
 func editStatus(old api.Redis) api.Redis {
 	old.Status = api.RedisStatus{
-		Phase: api.DatabasePhaseCreating,
+		Phase: api.DatabasePhaseReady,
 	}
 	return old
 }
@@ -359,7 +383,7 @@ func editSpecMonitor(old api.Redis) api.Redis {
 	old.Spec.Monitor = &mona.AgentSpec{
 		Agent: mona.AgentPrometheusBuiltin,
 		Prometheus: &mona.PrometheusSpec{
-			Exporter: &mona.PrometheusExporterSpec{
+			Exporter: mona.PrometheusExporterSpec{
 				Port: 4567,
 			},
 		},
@@ -416,4 +440,19 @@ func sampleClusterWithInvalidReplicas() api.Redis {
 	}
 
 	return redis
+}
+
+func completeProvisioning(old api.Redis) api.Redis {
+	old.Status.Conditions = []kmapi.Condition{
+		{
+			Type:   api.DatabaseProvisioned,
+			Status: kmapi.ConditionTrue,
+		},
+	}
+	return old
+}
+
+func updateInit(old api.Redis) api.Redis {
+	old.Spec.Init.WaitForInitialRestore = false
+	return old
 }

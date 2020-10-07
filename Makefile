@@ -338,9 +338,10 @@ lint: $(BUILD_DIRS)
 $(BUILD_DIRS):
 	@mkdir -p $@
 
-REGISTRY_SECRET ?=
-KUBE_NAMESPACE  ?=
-LICENSE_FILE    ?=
+REGISTRY_SECRET   ?=
+KUBE_NAMESPACE    ?=
+LICENSE_FILE      ?=
+IMAGE_PULL_POLICY ?= Always
 
 ifeq ($(strip $(REGISTRY_SECRET)),)
 	IMAGE_PULL_SECRETS =
@@ -356,9 +357,9 @@ install:
 		--set-file license=$(LICENSE_FILE)    \
 		--set operator.registry=$(REGISTRY)   \
 		--set operator.repository=rd-operator \
-		--set operator.tag=$(TAG)             \
-		--set imagePullPolicy=Always          \
-		$(IMAGE_PULL_SECRETS);                \
+		--set operator.tag=$(TAG) \
+		--set imagePullPolicy=$(IMAGE_PULL_POLICY) \
+		$(IMAGE_PULL_SECRETS); \
 	kubectl wait --for=condition=Available apiservice -l 'app.kubernetes.io/name=kubedb,app.kubernetes.io/instance=kubedb' --timeout=5m; \
 	until kubectl get crds redisversions.catalog.kubedb.com -o=jsonpath='{.items[0].metadata.name}' &> /dev/null; do sleep 1; done; \
 	kubectl wait --for=condition=Established crds -l app.kubernetes.io/name=kubedb --timeout=5m; \
@@ -461,3 +462,9 @@ release:
 .PHONY: clean
 clean:
 	rm -rf .go bin
+# make and load docker image to kind cluster
+.PHONY: push-to-kind
+push-to-kind: container
+	@echo "Loading docker image into kind cluster...."
+	@kind load docker-image $(IMAGE):$(TAG)
+	@echo "Image has been pushed successfully into kind cluster."

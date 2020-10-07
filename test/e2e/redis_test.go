@@ -75,7 +75,7 @@ var _ = Describe("Redis", func() {
 		Expect(err).NotTo(HaveOccurred())
 
 		By("Wait for Running redis")
-		f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+		f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 		By("Wait for AppBinding to create")
 		f.EventuallyAppBinding(redis.ObjectMeta).Should(BeTrue())
@@ -172,7 +172,7 @@ var _ = Describe("Redis", func() {
 					Expect(err).NotTo(HaveOccurred())
 
 					By("Wait for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					By("Retrieving item from database")
 					f.EventuallyGetItem(redis, key).Should(BeEquivalentTo(value))
@@ -302,7 +302,7 @@ var _ = Describe("Redis", func() {
 					Expect(err).NotTo(HaveOccurred())
 
 					By("Wait for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					// Delete without caring if DB is resumed
 					By("Delete redis")
@@ -318,7 +318,7 @@ var _ = Describe("Redis", func() {
 					Expect(err).NotTo(HaveOccurred())
 
 					By("Wait for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					_, err = f.GetRedis(redis.ObjectMeta)
 					Expect(err).NotTo(HaveOccurred())
@@ -343,7 +343,7 @@ var _ = Describe("Redis", func() {
 					Expect(err).NotTo(HaveOccurred())
 
 					By("Wait for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					By("Retrieving item from database")
 					f.EventuallyGetItem(redis, key).Should(BeEquivalentTo(value))
@@ -370,7 +370,7 @@ var _ = Describe("Redis", func() {
 						Expect(err).NotTo(HaveOccurred())
 
 						By("Wait for Running redis")
-						f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+						f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 						By("Retrieving item from database")
 						f.EventuallyGetItem(redis, key).Should(BeEquivalentTo(value))
@@ -398,7 +398,7 @@ var _ = Describe("Redis", func() {
 					f.EventuallyRedis(redis.ObjectMeta).Should(BeTrue())
 
 					By("Check for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					By("Update redis to set spec.terminationPolicy = Halt")
 					_, err := f.PatchRedis(redis.ObjectMeta, func(in *api.Redis) *api.Redis {
@@ -432,7 +432,7 @@ var _ = Describe("Redis", func() {
 					Expect(err).NotTo(HaveOccurred())
 
 					By("Wait for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					By("Delete redis")
 					err = f.DeleteRedis(redis.ObjectMeta)
@@ -447,7 +447,7 @@ var _ = Describe("Redis", func() {
 					Expect(err).NotTo(HaveOccurred())
 
 					By("Wait for Running redis")
-					f.EventuallyRedisRunning(redis.ObjectMeta).Should(BeTrue())
+					f.EventuallyRedisReady(redis.ObjectMeta).Should(BeTrue())
 
 					By("Retrieving item from database")
 					f.EventuallyGetItem(redis, key).Should(BeEquivalentTo(value))

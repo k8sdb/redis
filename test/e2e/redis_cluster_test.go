@@ -41,7 +41,7 @@ var createAndWaitForRunning = func() {
 	Expect(err).NotTo(HaveOccurred())
 
 	By("Wait for Running redis")
-	cl.f.EventuallyRedisRunning(cl.redis.ObjectMeta).Should(BeTrue())
+	cl.f.EventuallyRedisReady(cl.redis.ObjectMeta).Should(BeTrue())
 }
 
 //

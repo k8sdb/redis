@@ -22,6 +22,7 @@ import (
 	"strconv"
 	"time"
 
+	"kubedb.dev/apimachinery/apis/kubedb"
 	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
 	"kubedb.dev/apimachinery/client/clientset/versioned/typed/kubedb/v1alpha1/util"
 
@@ -162,12 +163,12 @@ func (f *Framework) EventuallyRedisPhase(meta metav1.ObjectMeta) GomegaAsyncAsse
 	)
 }
 
-func (f *Framework) EventuallyRedisRunning(meta metav1.ObjectMeta) GomegaAsyncAssertion {
+func (f *Framework) EventuallyRedisReady(meta metav1.ObjectMeta) GomegaAsyncAssertion {
 	return Eventually(
 		func() bool {
 			redis, err := f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
 			Expect(err).NotTo(HaveOccurred())
-			return redis.Status.Phase == api.DatabasePhaseRunning
+			return redis.Status.Phase == api.DatabasePhaseReady
 		},
 		time.Minute*13,
 		time.Second*5,
@@ -196,7 +197,7 @@ func (f *Framework) CleanRedis() {
 func (f *Framework) EvictPodsFromStatefulSet(meta metav1.ObjectMeta) error {
 	var err error
 	labelSelector := labels.Set{
-		meta_util.ManagedByLabelKey: api.GenericKey,
+		meta_util.ManagedByLabelKey: kubedb.GroupName,
 		api.LabelDatabaseKind:       api.ResourceKindRedis,
 		api.LabelDatabaseName:       meta.GetName(),
 	}

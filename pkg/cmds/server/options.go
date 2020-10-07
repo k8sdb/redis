@@ -22,6 +22,7 @@ import (
 
 	cs "kubedb.dev/apimachinery/client/clientset/versioned"
 	kubedbinformers "kubedb.dev/apimachinery/client/informers/externalversions"
+	"kubedb.dev/apimachinery/pkg/controller/initializer/stash"
 	"kubedb.dev/apimachinery/pkg/eventer"
 	"kubedb.dev/redis/pkg/controller"
 
@@ -149,5 +150,6 @@ func (s *ExtraOptions) ApplyTo(cfg *controller.OperatorConfig) error {
 
 	// Create event recorder
 	cfg.Recorder = eventer.NewEventRecorder(cfg.KubeClient, "Redis operator")
-	return nil
+	// Configure Stash initializer
+	return stash.Configure(cfg.ClientConfig, &cfg.Initializers.Stash, cfg.ResyncPeriod)
 }

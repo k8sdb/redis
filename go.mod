@@ -3,8 +3,8 @@ module kubedb.dev/redis
 go 1.12
 
 require (
-	github.com/appscode/go v0.0.0-20200928211031-cc0c23082d91
-	github.com/codeskyblue/go-sh v0.0.0-20190412065543-76bd3d59ff27
+	github.com/appscode/go v0.0.0-20201006035845-a0302ac8e3d3
+	github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
 	github.com/jetstack/cert-manager v0.16.0
 	github.com/onsi/ginkgo v1.11.0
 	github.com/onsi/gomega v1.8.1
@@ -17,6 +17,7 @@ require (
 	gomodules.xyz/blobfs v0.1.2
 	gomodules.xyz/cert v1.1.2
 	gomodules.xyz/envsubst v0.1.0
+	gomodules.xyz/sets v0.0.0-20200817084356-ae6e5e14ce3d
 	gomodules.xyz/version v0.1.0
 	k8s.io/api v0.18.9
 	k8s.io/apiextensions-apiserver v0.18.9
@@ -26,12 +27,10 @@ require (
 	k8s.io/kube-aggregator v0.18.9
 	kmodules.xyz/client-go v0.0.0-20201007024140-3223988adf40
 	kmodules.xyz/custom-resources v0.0.0-20200922210108-70f2815a43bb
-	kmodules.xyz/monitoring-agent-api v0.0.0-20200922204510-b8b5610e5385
-	kmodules.xyz/objectstore-api v0.0.0-20200922210707-59bab27e5d41 // indirect
+	kmodules.xyz/monitoring-agent-api v0.0.0-20201007104803-408a1ff2de8d
 	kmodules.xyz/offshoot-api v0.0.0-20200922211229-36acc531abab
-	kmodules.xyz/prober v0.0.0-20200922212142-743a6514664e // indirect
 	kmodules.xyz/webhook-runtime v0.0.0-20200922211931-8337935590de
-	kubedb.dev/apimachinery v0.14.0-beta.3.0.20200922060223-53b422770a18
+	kubedb.dev/apimachinery v0.14.0-beta.3.0.20201007105016-e562def953d6
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
