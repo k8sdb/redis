@@ -30,7 +30,7 @@ func (f *Framework) EventuallyCRD() GomegaAsyncAssertion {
 	return Eventually(
 		func() error {
 			// Check Redis TPR
-			if _, err := f.dbClient.KubedbV1alpha1().Redises(core.NamespaceAll).List(context.TODO(), metav1.ListOptions{}); err != nil {
+			if _, err := f.dbClient.KubedbV1alpha2().Redises(core.NamespaceAll).List(context.TODO(), metav1.ListOptions{}); err != nil {
 				return errors.New("CRD Redis is not ready")
 			}
 

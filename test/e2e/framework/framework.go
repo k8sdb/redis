@@ -19,7 +19,7 @@ package framework
 import (
 	"path/filepath"
 
-	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
+	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 	cs "kubedb.dev/apimachinery/client/clientset/versioned"
 	test_util "kubedb.dev/redis/pkg/testing"
 

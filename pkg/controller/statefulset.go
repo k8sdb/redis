@@ -24,7 +24,7 @@ import (
 	"regexp"
 	"strconv"
 
-	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
+	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 	"kubedb.dev/apimachinery/pkg/eventer"
 	configure_cluster "kubedb.dev/redis/pkg/configure-cluster"
 

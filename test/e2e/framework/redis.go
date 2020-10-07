@@ -23,8 +23,8 @@ import (
 	"time"
 
 	"kubedb.dev/apimachinery/apis/kubedb"
-	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
-	"kubedb.dev/apimachinery/client/clientset/versioned/typed/kubedb/v1alpha1/util"
+	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
+	"kubedb.dev/apimachinery/client/clientset/versioned/typed/kubedb/v1alpha2/util"
 
 	"github.com/appscode/go/crypto/rand"
 	"github.com/appscode/go/types"
@@ -113,31 +113,31 @@ func (f *Invocation) RedisWithTLS(redis *api.Redis) *api.Redis {
 }
 
 func (f *Framework) CreateRedis(obj *api.Redis) error {
-	_, err := f.dbClient.KubedbV1alpha1().Redises(obj.Namespace).Create(context.TODO(), obj, metav1.CreateOptions{})
+	_, err := f.dbClient.KubedbV1alpha2().Redises(obj.Namespace).Create(context.TODO(), obj, metav1.CreateOptions{})
 	return err
 }
 
 func (f *Framework) GetRedis(meta metav1.ObjectMeta) (*api.Redis, error) {
-	return f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
+	return f.dbClient.KubedbV1alpha2().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
 }
 
 func (f *Framework) PatchRedis(meta metav1.ObjectMeta, transform func(*api.Redis) *api.Redis) (*api.Redis, error) {
-	redis, err := f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
+	redis, err := f.dbClient.KubedbV1alpha2().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
-	redis, _, err = util.PatchRedis(context.TODO(), f.dbClient.KubedbV1alpha1(), redis, transform, metav1.PatchOptions{})
+	redis, _, err = util.PatchRedis(context.TODO(), f.dbClient.KubedbV1alpha2(), redis, transform, metav1.PatchOptions{})
 	return redis, err
 }
 
 func (f *Framework) DeleteRedis(meta metav1.ObjectMeta) error {
-	return f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Delete(context.TODO(), meta.Name, deleteInForeground())
+	return f.dbClient.KubedbV1alpha2().Redises(meta.Namespace).Delete(context.TODO(), meta.Name, deleteInForeground())
 }
 
 func (f *Framework) EventuallyRedis(meta metav1.ObjectMeta) GomegaAsyncAssertion {
 	return Eventually(
 		func() bool {
-			_, err := f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
+			_, err := f.dbClient.KubedbV1alpha2().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
 			if err != nil {
 				if kerr.IsNotFound(err) {
 					return false
@@ -154,7 +154,7 @@ func (f *Framework) EventuallyRedis(meta metav1.ObjectMeta) GomegaAsyncAssertion
 func (f *Framework) EventuallyRedisPhase(meta metav1.ObjectMeta) GomegaAsyncAssertion {
 	return Eventually(
 		func() api.DatabasePhase {
-			db, err := f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
+			db, err := f.dbClient.KubedbV1alpha2().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
 			Expect(err).NotTo(HaveOccurred())
 			return db.Status.Phase
 		},
@@ -166,7 +166,7 @@ func (f *Framework) EventuallyRedisPhase(meta metav1.ObjectMeta) GomegaAsyncAsse
 func (f *Framework) EventuallyRedisReady(meta metav1.ObjectMeta) GomegaAsyncAssertion {
 	return Eventually(
 		func() bool {
-			redis, err := f.dbClient.KubedbV1alpha1().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
+			redis, err := f.dbClient.KubedbV1alpha2().Redises(meta.Namespace).Get(context.TODO(), meta.Name, metav1.GetOptions{})
 			Expect(err).NotTo(HaveOccurred())
 			return redis.Status.Phase == api.DatabasePhaseReady
 		},
@@ -176,12 +176,12 @@ func (f *Framework) EventuallyRedisReady(meta metav1.ObjectMeta) GomegaAsyncAsse
 }
 
 func (f *Framework) CleanRedis() {
-	redisList, err := f.dbClient.KubedbV1alpha1().Redises(f.namespace).List(context.TODO(), metav1.ListOptions{})
+	redisList, err := f.dbClient.KubedbV1alpha2().Redises(f.namespace).List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
 		return
 	}
 	for _, e := range redisList.Items {
-		if _, _, err := util.PatchRedis(context.TODO(), f.dbClient.KubedbV1alpha1(), &e, func(in *api.Redis) *api.Redis {
+		if _, _, err := util.PatchRedis(context.TODO(), f.dbClient.KubedbV1alpha2(), &e, func(in *api.Redis) *api.Redis {
 			in.ObjectMeta.Finalizers = nil
 			in.Spec.TerminationPolicy = api.TerminationPolicyWipeOut
 			return in
@@ -189,7 +189,7 @@ func (f *Framework) CleanRedis() {
 			fmt.Printf("error Patching Redis. error: %v", err)
 		}
 	}
-	if err := f.dbClient.KubedbV1alpha1().Redises(f.namespace).DeleteCollection(context.TODO(), deleteInForeground(), metav1.ListOptions{}); err != nil {
+	if err := f.dbClient.KubedbV1alpha2().Redises(f.namespace).DeleteCollection(context.TODO(), deleteInForeground(), metav1.ListOptions{}); err != nil {
 		fmt.Printf("error in deletion of Redis. Error: %v", err)
 	}
 }

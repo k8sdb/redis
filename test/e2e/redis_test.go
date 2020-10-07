@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"time"
 
-	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
-	"kubedb.dev/apimachinery/client/clientset/versioned/typed/kubedb/v1alpha1/util"
+	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
+	"kubedb.dev/apimachinery/client/clientset/versioned/typed/kubedb/v1alpha2/util"
 	"kubedb.dev/redis/test/e2e/framework"
 	"kubedb.dev/redis/test/e2e/matcher"
 
@@ -538,7 +538,7 @@ var _ = Describe("Redis", func() {
 					createAndWaitForRunning()
 
 					By("Updating Envs")
-					_, _, err := util.PatchRedis(context.TODO(), f.ExtClient().KubedbV1alpha1(), redis, func(in *api.Redis) *api.Redis {
+					_, _, err := util.PatchRedis(context.TODO(), f.ExtClient().KubedbV1alpha2(), redis, func(in *api.Redis) *api.Redis {
 						in.Spec.PodTemplate.Spec.Env = []core.EnvVar{
 							{
 								Name:  "TEST_ENV",

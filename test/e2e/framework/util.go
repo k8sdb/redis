@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
+	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 	"kubedb.dev/apimachinery/apis/ops/v1alpha1"
 	opsapi "kubedb.dev/apimachinery/apis/ops/v1alpha1"
 

@@ -21,7 +21,7 @@ import (
 	"strconv"
 	"time"
 
-	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha1"
+	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 	test_util "kubedb.dev/redis/pkg/testing"
 
 	// test_util "kubedb.dev/redis/pkg/testing"
