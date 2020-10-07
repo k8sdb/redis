@@ -24,7 +24,7 @@ require (
 	k8s.io/apiserver v0.18.9
 	k8s.io/client-go v12.0.0+incompatible
 	k8s.io/kube-aggregator v0.18.9
-	kmodules.xyz/client-go v0.0.0-20200929030759-cce6a3c623c1
+	kmodules.xyz/client-go v0.0.0-20201007024140-3223988adf40
 	kmodules.xyz/custom-resources v0.0.0-20200922210108-70f2815a43bb
 	kmodules.xyz/monitoring-agent-api v0.0.0-20200922204510-b8b5610e5385
 	kmodules.xyz/objectstore-api v0.0.0-20200922210707-59bab27e5d41 // indirect
