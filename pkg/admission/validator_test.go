@@ -446,7 +446,7 @@ func completeProvisioning(old api.Redis) api.Redis {
 	old.Status.Conditions = []kmapi.Condition{
 		{
 			Type:   api.DatabaseProvisioned,
-			Status: kmapi.ConditionTrue,
+			Status: core.ConditionTrue,
 		},
 	}
 	return old
