@@ -68,13 +68,13 @@ func (fi *Invocation) GetPod(meta metav1.ObjectMeta) (*core.Pod, error) {
 	return nil, fmt.Errorf("no pod found for workload %v", meta.Name)
 }
 
-func (fi *Invocation) GetCustomConfig(configs []string) *core.ConfigMap {
-	return &core.ConfigMap{
+func (fi *Invocation) GetCustomConfig(configs []string) *core.Secret {
+	return &core.Secret{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      fi.app,
 			Namespace: fi.namespace,
 		},
-		Data: map[string]string{
+		StringData: map[string]string{
 			"redis.conf": strings.Join(configs, "\n"),
 		},
 	}

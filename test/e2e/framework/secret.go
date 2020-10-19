@@ -23,10 +23,15 @@ import (
 
 	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	meta_util "kmodules.xyz/client-go/meta"
 )
 
 func (f *Framework) CreateSecret(obj *core.Secret) (*core.Secret, error) {
 	return f.KubeClient.CoreV1().Secrets(obj.Namespace).Create(context.TODO(), obj, metav1.CreateOptions{})
+}
+
+func (f *Framework) DeleteSecret(meta metav1.ObjectMeta) error {
+	return f.KubeClient.CoreV1().Secrets(meta.Namespace).Delete(context.TODO(), meta.Name, meta_util.DeleteInForeground())
 }
 
 func (f *Framework) SelfSignedCASecret(meta metav1.ObjectMeta, kind string) *core.Secret {

@@ -563,7 +563,7 @@ var _ = Describe("Redis", func() {
 
 			Context("from configMap", func() {
 				var (
-					userConfig *core.ConfigMap
+					userConfig *core.Secret
 				)
 
 				BeforeEach(func() {
@@ -571,26 +571,22 @@ var _ = Describe("Redis", func() {
 				})
 
 				AfterEach(func() {
-					By("Deleting configMap: " + userConfig.Name)
-					err := f.DeleteConfigMap(userConfig.ObjectMeta)
+					By("Deleting secret: " + userConfig.Name)
+					err := f.DeleteSecret(userConfig.ObjectMeta)
 					Expect(err).NotTo(HaveOccurred())
 				})
 
-				It("should set configuration provided in configMap", func() {
+				It("should set configuration provided in secret", func() {
 					if skipMessage != "" {
 						Skip(skipMessage)
 					}
 
 					By("Creating configMap: " + userConfig.Name)
-					err := f.CreateConfigMap(userConfig)
+					_, err := f.CreateSecret(userConfig)
 					Expect(err).NotTo(HaveOccurred())
 
-					redis.Spec.ConfigSource = &core.VolumeSource{
-						ConfigMap: &core.ConfigMapVolumeSource{
-							LocalObjectReference: core.LocalObjectReference{
-								Name: userConfig.Name,
-							},
-						},
+					redis.Spec.ConfigSecret = &core.LocalObjectReference{
+						Name: userConfig.Name,
 					}
 
 					// Create Redis
