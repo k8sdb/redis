@@ -28,11 +28,11 @@ import (
 	"kubedb.dev/apimachinery/client/clientset/versioned/scheme"
 	"kubedb.dev/redis/test/e2e/framework"
 
-	"github.com/appscode/go/log"
 	cm "github.com/jetstack/cert-manager/pkg/client/clientset/versioned"
 	. "github.com/onsi/ginkgo"
 	"github.com/onsi/ginkgo/reporters"
 	. "github.com/onsi/gomega"
+	"gomodules.xyz/x/log"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"

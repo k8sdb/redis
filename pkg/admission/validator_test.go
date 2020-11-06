@@ -26,7 +26,7 @@ import (
 	extFake "kubedb.dev/apimachinery/client/clientset/versioned/fake"
 	"kubedb.dev/apimachinery/client/clientset/versioned/scheme"
 
-	"github.com/appscode/go/types"
+	"gomodules.xyz/pointer"
 	admission "k8s.io/api/admission/v1beta1"
 	authenticationV1 "k8s.io/api/authentication/v1"
 	core "k8s.io/api/core/v1"
@@ -322,10 +322,10 @@ func sampleRedisWithoutMode() api.Redis {
 		},
 		Spec: api.RedisSpec{
 			Version:     "4.0",
-			Replicas:    types.Int32P(1),
+			Replicas:    pointer.Int32P(1),
 			StorageType: api.StorageTypeDurable,
 			Storage: &core.PersistentVolumeClaimSpec{
-				StorageClassName: types.StringP("standard"),
+				StorageClassName: pointer.StringP("standard"),
 				Resources: core.ResourceRequirements{
 					Requests: core.ResourceList{
 						core.ResourceStorage: resource.MustParse("100Mi"),
@@ -362,7 +362,7 @@ func getAwkwardRedis() api.Redis {
 
 func getAwkwardRedisWithInvalidReplicas() api.Redis {
 	redis := sampleRedis()
-	redis.Spec.Replicas = types.Int32P(3)
+	redis.Spec.Replicas = pointer.Int32P(3)
 	return redis
 }
 
@@ -414,8 +414,8 @@ func sampleClusterWithOnlyMode() api.Redis {
 func sampleCluster() api.Redis {
 	redis := sampleClusterWithOnlyMode()
 	redis.Spec.Cluster = &api.RedisClusterSpec{
-		Master:   types.Int32P(3),
-		Replicas: types.Int32P(1),
+		Master:   pointer.Int32P(3),
+		Replicas: pointer.Int32P(1),
 	}
 
 	return redis
@@ -424,8 +424,8 @@ func sampleCluster() api.Redis {
 func sampleClusterWithInvalidMaster() api.Redis {
 	redis := sampleClusterWithOnlyMode()
 	redis.Spec.Cluster = &api.RedisClusterSpec{
-		Master:   types.Int32P(2),
-		Replicas: types.Int32P(1),
+		Master:   pointer.Int32P(2),
+		Replicas: pointer.Int32P(1),
 	}
 
 	return redis
@@ -434,8 +434,8 @@ func sampleClusterWithInvalidMaster() api.Redis {
 func sampleClusterWithInvalidReplicas() api.Redis {
 	redis := sampleClusterWithOnlyMode()
 	redis.Spec.Cluster = &api.RedisClusterSpec{
-		Master:   types.Int32P(3),
-		Replicas: types.Int32P(0),
+		Master:   pointer.Int32P(3),
+		Replicas: pointer.Int32P(0),
 	}
 
 	return redis

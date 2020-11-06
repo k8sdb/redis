@@ -3,34 +3,36 @@ module kubedb.dev/redis
 go 1.12
 
 require (
-	github.com/appscode/go v0.0.0-20201006035845-a0302ac8e3d3
 	github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
 	github.com/jetstack/cert-manager v0.16.0
 	github.com/onsi/ginkgo v1.11.0
 	github.com/onsi/gomega v1.8.1
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus-operator/prometheus-operator v0.42.0
-	github.com/spf13/cobra v1.0.0
+	github.com/spf13/cobra v1.1.1
 	github.com/spf13/pflag v1.0.5
 	go.bytebuilders.dev/license-verifier v0.3.0
 	go.bytebuilders.dev/license-verifier/kubernetes v0.3.0
 	gomodules.xyz/blobfs v0.1.2
 	gomodules.xyz/cert v1.1.2
 	gomodules.xyz/envsubst v0.1.0
-	gomodules.xyz/sets v0.0.0-20200817084356-ae6e5e14ce3d
+	gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
+	gomodules.xyz/runtime v0.0.0-20201104200926-d838b09dda8b
+	gomodules.xyz/sets v0.0.0-20200930152147-4f4543544799
 	gomodules.xyz/version v0.1.0
+	gomodules.xyz/x v0.0.0-20201105065653-91c568df6331
 	k8s.io/api v0.18.9
 	k8s.io/apiextensions-apiserver v0.18.9
 	k8s.io/apimachinery v0.18.9
 	k8s.io/apiserver v0.18.9
 	k8s.io/client-go v0.18.9
 	k8s.io/kube-aggregator v0.18.9
-	kmodules.xyz/client-go v0.0.0-20201027113349-01a6d453d836
-	kmodules.xyz/custom-resources v0.0.0-20201008012351-6d8090f759d4
-	kmodules.xyz/monitoring-agent-api v0.0.0-20201022103441-f51a42fb9ac8
-	kmodules.xyz/offshoot-api v0.0.0-20201027212804-f5e6dc573558
-	kmodules.xyz/webhook-runtime v0.0.0-20200922211931-8337935590de
-	kubedb.dev/apimachinery v0.14.1-0.20201030200006-92af33bde233
+	kmodules.xyz/client-go v0.0.0-20201105071625-0b277310b9b8
+	kmodules.xyz/custom-resources v0.0.0-20201105075444-3c6af51b4f79
+	kmodules.xyz/monitoring-agent-api v0.0.0-20201105074044-be7a1044891a
+	kmodules.xyz/offshoot-api v0.0.0-20201105074700-8675f5f686f2
+	kmodules.xyz/webhook-runtime v0.0.0-20201105073856-2dc7382b88c6
+	kubedb.dev/apimachinery v0.14.1-0.20201105213239-f74effb9db37
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d

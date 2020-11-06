@@ -23,11 +23,11 @@ import (
 	cs "kubedb.dev/apimachinery/client/clientset/versioned"
 	test_util "kubedb.dev/redis/pkg/testing"
 
-	"github.com/appscode/go/crypto/rand"
 	cm "github.com/jetstack/cert-manager/pkg/client/clientset/versioned"
 	. "github.com/onsi/gomega"
 	"gomodules.xyz/blobfs"
 	"gomodules.xyz/cert/certstore"
+	"gomodules.xyz/x/crypto/rand"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"

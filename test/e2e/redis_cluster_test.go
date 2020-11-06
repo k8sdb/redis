@@ -27,11 +27,11 @@ import (
 	// test_util "kubedb.dev/redis/pkg/testing"
 	"kubedb.dev/redis/test/e2e/framework"
 
-	"github.com/appscode/go/sets"
-	"github.com/appscode/go/types"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"gomodules.xyz/pointer"
 	kerr "k8s.io/apimachinery/pkg/api/errors"
+	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/apimachinery/pkg/util/wait"
 )
 
@@ -405,7 +405,7 @@ var _ = Describe("Redis Cluster", func() {
 
 			By("Add replica")
 			cl.redis, err = cl.f.PatchRedis(cl.redis.ObjectMeta, func(in *api.Redis) *api.Redis {
-				in.Spec.Cluster.Replicas = types.Int32P((*cl.redis.Spec.Cluster.Replicas) + 1)
+				in.Spec.Cluster.Replicas = pointer.Int32P((*cl.redis.Spec.Cluster.Replicas) + 1)
 				return in
 			})
 			Expect(err).NotTo(HaveOccurred())
@@ -446,7 +446,7 @@ var _ = Describe("Redis Cluster", func() {
 
 			By("Remove replica")
 			cl.redis, err = cl.f.PatchRedis(cl.redis.ObjectMeta, func(in *api.Redis) *api.Redis {
-				in.Spec.Cluster.Replicas = types.Int32P((*cl.redis.Spec.Cluster.Replicas) - 1)
+				in.Spec.Cluster.Replicas = pointer.Int32P((*cl.redis.Spec.Cluster.Replicas) - 1)
 				return in
 			})
 			Expect(err).NotTo(HaveOccurred())
@@ -485,7 +485,7 @@ var _ = Describe("Redis Cluster", func() {
 
 			By("Add master")
 			cl.redis, err = cl.f.PatchRedis(cl.redis.ObjectMeta, func(in *api.Redis) *api.Redis {
-				in.Spec.Cluster.Master = types.Int32P((*cl.redis.Spec.Cluster.Master) + 1)
+				in.Spec.Cluster.Master = pointer.Int32P((*cl.redis.Spec.Cluster.Master) + 1)
 				return in
 			})
 			Expect(err).NotTo(HaveOccurred())
@@ -536,7 +536,7 @@ var _ = Describe("Redis Cluster", func() {
 
 			By("Remove master")
 			cl.redis, err = cl.f.PatchRedis(cl.redis.ObjectMeta, func(in *api.Redis) *api.Redis {
-				in.Spec.Cluster.Master = types.Int32P((*cl.redis.Spec.Cluster.Master) - 1)
+				in.Spec.Cluster.Master = pointer.Int32P((*cl.redis.Spec.Cluster.Master) - 1)
 				return in
 			})
 			Expect(err).NotTo(HaveOccurred())

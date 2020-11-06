@@ -26,10 +26,10 @@ import (
 	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 	"kubedb.dev/apimachinery/client/clientset/versioned/typed/kubedb/v1alpha2/util"
 
-	"github.com/appscode/go/crypto/rand"
-	"github.com/appscode/go/types"
 	cm_api "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1alpha2"
 	. "github.com/onsi/gomega"
+	"gomodules.xyz/pointer"
+	"gomodules.xyz/x/crypto/rand"
 	core "k8s.io/api/core/v1"
 	policy "k8s.io/api/policy/v1beta1"
 	kerr "k8s.io/apimachinery/pkg/api/errors"
@@ -62,7 +62,7 @@ func (fi *Invocation) Redis() *api.Redis {
 						core.ResourceStorage: resource.MustParse("1Gi"),
 					},
 				},
-				StorageClassName: types.StringP(fi.StorageClass),
+				StorageClassName: pointer.StringP(fi.StorageClass),
 			},
 		},
 	}
@@ -72,8 +72,8 @@ func (fi *Invocation) RedisCluster() *api.Redis {
 	redis := fi.Redis()
 	redis.Spec.Mode = api.RedisModeCluster
 	redis.Spec.Cluster = &api.RedisClusterSpec{
-		Master:   types.Int32P(3),
-		Replicas: types.Int32P(1),
+		Master:   pointer.Int32P(3),
+		Replicas: pointer.Int32P(1),
 	}
 	if WithTLSConfig {
 		redis = fi.RedisWithTLS(redis)
@@ -90,7 +90,7 @@ func (f *Invocation) RedisWithTLS(redis *api.Redis) *api.Redis {
 			IssuerRef: &core.TypedLocalObjectReference{
 				Name:     issuer.Name,
 				Kind:     "Issuer",
-				APIGroup: types.StringP(cm_api.SchemeGroupVersion.Group), //cert-manger.io
+				APIGroup: pointer.StringP(cm_api.SchemeGroupVersion.Group), //cert-manger.io
 			},
 			Certificates: []kmapi.CertificateSpec{
 				{

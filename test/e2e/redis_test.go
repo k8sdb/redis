@@ -26,11 +26,11 @@ import (
 	"kubedb.dev/redis/test/e2e/framework"
 	"kubedb.dev/redis/test/e2e/matcher"
 
-	"github.com/appscode/go/crypto/rand"
-	"github.com/appscode/go/log"
-	"github.com/appscode/go/types"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"gomodules.xyz/pointer"
+	"gomodules.xyz/x/crypto/rand"
+	"gomodules.xyz/x/log"
 	core "k8s.io/api/core/v1"
 	rbac "k8s.io/api/rbac/v1"
 	kerr "k8s.io/apimachinery/pkg/api/errors"
@@ -195,8 +195,8 @@ var _ = Describe("Redis", func() {
 				It("should run eviction with shard successfully", func() {
 					redis = f.RedisCluster()
 					redis.Spec.Cluster = &api.RedisClusterSpec{
-						Master:   types.Int32P(3),
-						Replicas: types.Int32P(2),
+						Master:   pointer.Int32P(3),
+						Replicas: pointer.Int32P(2),
 					}
 					// Create Redis
 					By("Create DB")

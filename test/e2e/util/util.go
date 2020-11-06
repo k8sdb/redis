@@ -22,7 +22,7 @@ import (
 
 	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 
-	"github.com/appscode/go/types"
+	"gomodules.xyz/pointer"
 	apps "k8s.io/api/apps/v1"
 	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -39,7 +39,7 @@ func WaitUntilFailedNodeAvailable(kubeClient kubernetes.Interface, statefulSet *
 		kubeClient,
 		statefulSet.Namespace,
 		statefulSet.Spec.Selector,
-		int(types.Int32(statefulSet.Spec.Replicas)),
+		int(pointer.Int32(statefulSet.Spec.Replicas)),
 	)
 }
 
