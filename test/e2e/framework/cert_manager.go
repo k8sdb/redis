@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"time"
 
+	"kubedb.dev/apimachinery/apis/kubedb"
 	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 
 	cm_api "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1alpha2"
@@ -38,8 +39,9 @@ const (
 func (f *Framework) IssuerForDB(dbMeta, caSecretMeta metav1.ObjectMeta, resourceKind string) *cm_api.Issuer {
 	thisIssuerName := rand.WithUniqSuffix(IssuerName)
 	labelMap := map[string]string{
-		api.LabelDatabaseName: dbMeta.Name,
-		api.LabelDatabaseKind: resourceKind,
+		meta_util.NameLabelKey:      api.Redis{}.ResourceFQN(),
+		meta_util.InstanceLabelKey:  dbMeta.Name,
+		meta_util.ManagedByLabelKey: kubedb.GroupName,
 	}
 	return &cm_api.Issuer{
 		TypeMeta: metav1.TypeMeta{

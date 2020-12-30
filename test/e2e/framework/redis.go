@@ -197,9 +197,9 @@ func (f *Framework) CleanRedis() {
 func (f *Framework) EvictPodsFromStatefulSet(meta metav1.ObjectMeta) error {
 	var err error
 	labelSelector := labels.Set{
+		meta_util.NameLabelKey:      api.Redis{}.ResourceFQN(),
+		meta_util.InstanceLabelKey:  meta.Name,
 		meta_util.ManagedByLabelKey: kubedb.GroupName,
-		api.LabelDatabaseKind:       api.ResourceKindRedis,
-		api.LabelDatabaseName:       meta.GetName(),
 	}
 
 	// get sts in the namespace

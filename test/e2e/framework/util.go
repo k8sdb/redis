@@ -23,6 +23,7 @@ import (
 	"strings"
 	"time"
 
+	"kubedb.dev/apimachinery/apis/kubedb"
 	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 	"kubedb.dev/apimachinery/apis/ops/v1alpha1"
 	opsapi "kubedb.dev/apimachinery/apis/ops/v1alpha1"
@@ -37,6 +38,7 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/wait"
+	meta_util "kmodules.xyz/client-go/meta"
 )
 
 const (
@@ -97,8 +99,9 @@ func (f *Framework) EventuallyWipedOut(meta metav1.ObjectMeta) GomegaAsyncAssert
 	return Eventually(
 		func() error {
 			labelMap := map[string]string{
-				api.LabelDatabaseName: meta.Name,
-				api.LabelDatabaseKind: api.ResourceKindRedis,
+				meta_util.NameLabelKey:      api.Redis{}.ResourceFQN(),
+				meta_util.InstanceLabelKey:  meta.Name,
+				meta_util.ManagedByLabelKey: kubedb.GroupName,
 			}
 			labelSelector := labels.SelectorFromSet(labelMap)
 

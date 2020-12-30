@@ -19,6 +19,7 @@ package framework
 import (
 	"context"
 
+	"kubedb.dev/apimachinery/apis/kubedb"
 	api "kubedb.dev/apimachinery/apis/kubedb/v1alpha2"
 
 	core "k8s.io/api/core/v1"
@@ -36,8 +37,9 @@ func (f *Framework) DeleteSecret(meta metav1.ObjectMeta) error {
 
 func (f *Framework) SelfSignedCASecret(meta metav1.ObjectMeta, kind string) *core.Secret {
 	labelMap := map[string]string{
-		api.LabelDatabaseName: meta.Name,
-		api.LabelDatabaseKind: kind,
+		meta_util.NameLabelKey:      api.Redis{}.ResourceFQN(),
+		meta_util.InstanceLabelKey:  meta.Name,
+		meta_util.ManagedByLabelKey: kubedb.GroupName,
 	}
 	return &core.Secret{
 		ObjectMeta: metav1.ObjectMeta{
