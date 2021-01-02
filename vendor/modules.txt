@@ -22,9 +22,6 @@ github.com/NYTimes/gziphandler
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
-# github.com/appscode/go v0.0.0-20191119085241-0887d8ec2ecc
-github.com/appscode/go/net
-github.com/appscode/go/sets
 # github.com/aws/aws-sdk-go v1.31.13
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
@@ -77,10 +74,6 @@ github.com/beorn7/perks/quantile
 github.com/blang/semver
 # github.com/cespare/xxhash/v2 v2.1.1
 github.com/cespare/xxhash/v2
-# github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0
-github.com/codegangsta/inject
-# github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
-github.com/codeskyblue/go-sh
 # github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
 github.com/coreos/go-systemd/daemon
 github.com/coreos/go-systemd/journal
@@ -141,8 +134,6 @@ github.com/google/go-cmp/cmp/internal/value
 github.com/google/gofuzz
 # github.com/google/uuid v1.1.2
 github.com/google/uuid
-# github.com/googleapis/gax-go v2.0.2+incompatible
-github.com/googleapis/gax-go
 # github.com/googleapis/gax-go/v2 v2.0.5
 github.com/googleapis/gax-go/v2
 # github.com/googleapis/gnostic v0.4.0 => github.com/googleapis/gnostic v0.3.1
@@ -167,12 +158,6 @@ github.com/grpc-ecosystem/go-grpc-prometheus
 # github.com/hashicorp/golang-lru v0.5.4
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
-# github.com/hpcloud/tail v1.0.0
-github.com/hpcloud/tail
-github.com/hpcloud/tail/ratelimiter
-github.com/hpcloud/tail/util
-github.com/hpcloud/tail/watch
-github.com/hpcloud/tail/winfile
 # github.com/imdario/mergo v0.3.6 => github.com/imdario/mergo v0.3.5
 github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.0.0
@@ -234,38 +219,6 @@ github.com/modern-go/concurrent
 github.com/modern-go/reflect2
 # github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822
 github.com/munnerz/goautoneg
-# github.com/onsi/ginkgo v1.11.0
-github.com/onsi/ginkgo
-github.com/onsi/ginkgo/config
-github.com/onsi/ginkgo/internal/codelocation
-github.com/onsi/ginkgo/internal/containernode
-github.com/onsi/ginkgo/internal/failer
-github.com/onsi/ginkgo/internal/leafnodes
-github.com/onsi/ginkgo/internal/remote
-github.com/onsi/ginkgo/internal/spec
-github.com/onsi/ginkgo/internal/spec_iterator
-github.com/onsi/ginkgo/internal/specrunner
-github.com/onsi/ginkgo/internal/suite
-github.com/onsi/ginkgo/internal/testingtproxy
-github.com/onsi/ginkgo/internal/writer
-github.com/onsi/ginkgo/reporters
-github.com/onsi/ginkgo/reporters/stenographer
-github.com/onsi/ginkgo/reporters/stenographer/support/go-colorable
-github.com/onsi/ginkgo/reporters/stenographer/support/go-isatty
-github.com/onsi/ginkgo/types
-# github.com/onsi/gomega v1.8.1
-github.com/onsi/gomega
-github.com/onsi/gomega/format
-github.com/onsi/gomega/internal/assertion
-github.com/onsi/gomega/internal/asyncassertion
-github.com/onsi/gomega/internal/oraclematcher
-github.com/onsi/gomega/internal/testingtsupport
-github.com/onsi/gomega/matchers
-github.com/onsi/gomega/matchers/support/goraph/bipartitegraph
-github.com/onsi/gomega/matchers/support/goraph/edge
-github.com/onsi/gomega/matchers/support/goraph/node
-github.com/onsi/gomega/matchers/support/goraph/util
-github.com/onsi/gomega/types
 # github.com/peterbourgon/diskv v2.0.1+incompatible
 github.com/peterbourgon/diskv
 # github.com/pkg/errors v0.9.1
@@ -346,7 +299,6 @@ go.opencensus.io/internal
 go.opencensus.io/internal/tagencoding
 go.opencensus.io/metric/metricdata
 go.opencensus.io/metric/metricproducer
-go.opencensus.io/plugin/ocgrpc
 go.opencensus.io/plugin/ochttp
 go.opencensus.io/plugin/ochttp/propagation/b3
 go.opencensus.io/resource
@@ -371,14 +323,6 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
-# gocloud.dev v0.20.0
-gocloud.dev/blob
-gocloud.dev/blob/driver
-gocloud.dev/gcerrors
-gocloud.dev/internal/gcerr
-gocloud.dev/internal/oc
-gocloud.dev/internal/openurl
-gocloud.dev/internal/retry
 # golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 golang.org/x/crypto/cryptobyte
 golang.org/x/crypto/cryptobyte/asn1
@@ -393,9 +337,6 @@ golang.org/x/lint/golint
 # golang.org/x/net v0.0.0-20200625001655-4c5254603344
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
-golang.org/x/net/html
-golang.org/x/net/html/atom
-golang.org/x/net/html/charset
 golang.org/x/net/http/httpguts
 golang.org/x/net/http2
 golang.org/x/net/http2/hpack
@@ -418,20 +359,10 @@ golang.org/x/sys/unix
 golang.org/x/sys/windows
 # golang.org/x/text v0.3.2
 golang.org/x/text/encoding
-golang.org/x/text/encoding/charmap
-golang.org/x/text/encoding/htmlindex
 golang.org/x/text/encoding/internal
 golang.org/x/text/encoding/internal/identifier
-golang.org/x/text/encoding/japanese
-golang.org/x/text/encoding/korean
-golang.org/x/text/encoding/simplifiedchinese
-golang.org/x/text/encoding/traditionalchinese
 golang.org/x/text/encoding/unicode
-golang.org/x/text/internal/language
-golang.org/x/text/internal/language/compact
-golang.org/x/text/internal/tag
 golang.org/x/text/internal/utf8internal
-golang.org/x/text/language
 golang.org/x/text/runes
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
@@ -464,11 +395,6 @@ golang.org/x/tools/internal/packagesinternal
 # golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
 golang.org/x/xerrors
 golang.org/x/xerrors/internal
-# gomodules.xyz/blobfs v0.1.2
-gomodules.xyz/blobfs
-# gomodules.xyz/cert v1.1.2
-gomodules.xyz/cert
-gomodules.xyz/cert/certstore
 # gomodules.xyz/envsubst v0.1.0
 gomodules.xyz/envsubst
 gomodules.xyz/envsubst/parse
@@ -477,8 +403,6 @@ gomodules.xyz/envsubst/path
 gomodules.xyz/homedir
 # gomodules.xyz/jsonpatch/v2 v2.1.0
 gomodules.xyz/jsonpatch/v2
-# gomodules.xyz/password-generator v0.2.6
-gomodules.xyz/password-generator
 # gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
 gomodules.xyz/pointer
 # gomodules.xyz/runtime v0.0.0-20201104200926-d838b09dda8b
@@ -496,7 +420,6 @@ gomodules.xyz/version
 gomodules.xyz/x/analytics
 gomodules.xyz/x/arrays
 gomodules.xyz/x/context
-gomodules.xyz/x/crypto/rand
 gomodules.xyz/x/flags
 gomodules.xyz/x/log
 gomodules.xyz/x/log/golog
@@ -563,14 +486,10 @@ google.golang.org/grpc/serviceconfig
 google.golang.org/grpc/stats
 google.golang.org/grpc/status
 google.golang.org/grpc/tap
-# gopkg.in/fsnotify.v1 v1.4.7
-gopkg.in/fsnotify.v1
 # gopkg.in/inf.v0 v0.9.1
 gopkg.in/inf.v0
 # gopkg.in/natefinch/lumberjack.v2 v2.0.0
 gopkg.in/natefinch/lumberjack.v2
-# gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
-gopkg.in/tomb.v1
 # gopkg.in/yaml.v2 v2.3.0
 gopkg.in/yaml.v2
 # honnef.co/go/tools v0.0.1-2020.1.4
@@ -1061,7 +980,6 @@ k8s.io/client-go/tools/clientcmd/api/v1
 k8s.io/client-go/tools/events
 k8s.io/client-go/tools/metrics
 k8s.io/client-go/tools/pager
-k8s.io/client-go/tools/portforward
 k8s.io/client-go/tools/record
 k8s.io/client-go/tools/record/util
 k8s.io/client-go/tools/reference
@@ -1110,7 +1028,7 @@ k8s.io/utils/net
 k8s.io/utils/path
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# kmodules.xyz/client-go v0.0.0-20201229202653-b029d8e7bcbb
+# kmodules.xyz/client-go v0.0.0-20201230092550-8ca15cfcbefa
 kmodules.xyz/client-go
 kmodules.xyz/client-go/admissionregistration/v1beta1
 kmodules.xyz/client-go/api/v1
@@ -1132,7 +1050,6 @@ kmodules.xyz/client-go/tools/cli
 kmodules.xyz/client-go/tools/clientcmd
 kmodules.xyz/client-go/tools/clusterid
 kmodules.xyz/client-go/tools/exec
-kmodules.xyz/client-go/tools/portforward
 kmodules.xyz/client-go/tools/queue
 # kmodules.xyz/custom-resources v0.0.0-20201124062543-bd8d35c21b0c
 kmodules.xyz/custom-resources/apis/appcatalog
@@ -1163,7 +1080,7 @@ kmodules.xyz/prober/api/v1
 # kmodules.xyz/webhook-runtime v0.0.0-20201105073856-2dc7382b88c6
 kmodules.xyz/webhook-runtime/admission/v1beta1
 kmodules.xyz/webhook-runtime/registry/admissionreview/v1beta1
-# kubedb.dev/apimachinery v0.15.3-0.20210101042216-56a61c7fd5c4
+# kubedb.dev/apimachinery v0.15.3-0.20210102043329-2469f17e2c68
 kubedb.dev/apimachinery/apis
 kubedb.dev/apimachinery/apis/autoscaling
 kubedb.dev/apimachinery/apis/autoscaling/v1alpha1

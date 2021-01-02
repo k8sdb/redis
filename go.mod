@@ -3,36 +3,39 @@ module kubedb.dev/redis
 go 1.12
 
 require (
-	github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
-	github.com/jetstack/cert-manager v0.16.0
-	github.com/onsi/ginkgo v1.11.0
-	github.com/onsi/gomega v1.8.1
+	cloud.google.com/go v0.58.0 // indirect
+	github.com/Azure/go-autorest/autorest/date v0.2.0 // indirect
+	github.com/aws/aws-sdk-go v1.31.13 // indirect
+	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
+	github.com/google/go-cmp v0.4.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus-operator/prometheus-operator v0.42.0
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/pflag v1.0.5
 	go.bytebuilders.dev/license-verifier v0.5.1
 	go.bytebuilders.dev/license-verifier/kubernetes v0.5.1
-	gomodules.xyz/blobfs v0.1.2
-	gomodules.xyz/cert v1.1.2
+	go.opencensus.io v0.22.3 // indirect
+	golang.org/x/mod v0.3.0 // indirect
+	golang.org/x/tools v0.0.0-20200608174601-1b747fd94509 // indirect
 	gomodules.xyz/envsubst v0.1.0
 	gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
 	gomodules.xyz/runtime v0.0.0-20201104200926-d838b09dda8b
 	gomodules.xyz/sets v0.0.0-20200930152147-4f4543544799
 	gomodules.xyz/version v0.1.0
 	gomodules.xyz/x v0.0.0-20201105065653-91c568df6331
+	google.golang.org/genproto v0.0.0-20200608115520-7c474a2e3482 // indirect
+	honnef.co/go/tools v0.0.1-2020.1.4 // indirect
 	k8s.io/api v0.18.9
 	k8s.io/apiextensions-apiserver v0.18.9
 	k8s.io/apimachinery v0.18.9
 	k8s.io/apiserver v0.18.9
 	k8s.io/client-go v0.18.9
-	k8s.io/kube-aggregator v0.18.9
-	kmodules.xyz/client-go v0.0.0-20201229202653-b029d8e7bcbb
+	kmodules.xyz/client-go v0.0.0-20201230092550-8ca15cfcbefa
 	kmodules.xyz/custom-resources v0.0.0-20201124062543-bd8d35c21b0c
 	kmodules.xyz/monitoring-agent-api v0.0.0-20201105074044-be7a1044891a
 	kmodules.xyz/offshoot-api v0.0.0-20201105074700-8675f5f686f2
 	kmodules.xyz/webhook-runtime v0.0.0-20201105073856-2dc7382b88c6
-	kubedb.dev/apimachinery v0.15.3-0.20210101042216-56a61c7fd5c4
+	kubedb.dev/apimachinery v0.15.3-0.20210102043329-2469f17e2c68
 )
 
 replace bitbucket.org/ww/goautoneg => gomodules.xyz/goautoneg v0.0.0-20120707110453-a547fc61f48d
