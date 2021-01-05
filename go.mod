@@ -3,28 +3,18 @@ module kubedb.dev/redis
 go 1.12
 
 require (
-	cloud.google.com/go v0.58.0 // indirect
-	github.com/Azure/go-autorest/autorest/date v0.2.0 // indirect
-	github.com/aws/aws-sdk-go v1.31.13 // indirect
-	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
-	github.com/google/go-cmp v0.4.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus-operator/prometheus-operator v0.42.0
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/pflag v1.0.5
 	go.bytebuilders.dev/license-verifier v0.5.1
 	go.bytebuilders.dev/license-verifier/kubernetes v0.5.1
-	go.opencensus.io v0.22.3 // indirect
-	golang.org/x/mod v0.3.0 // indirect
-	golang.org/x/tools v0.0.0-20200608174601-1b747fd94509 // indirect
 	gomodules.xyz/envsubst v0.1.0
 	gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
 	gomodules.xyz/runtime v0.0.0-20201104200926-d838b09dda8b
 	gomodules.xyz/sets v0.0.0-20200930152147-4f4543544799
 	gomodules.xyz/version v0.1.0
 	gomodules.xyz/x v0.0.0-20201105065653-91c568df6331
-	google.golang.org/genproto v0.0.0-20200608115520-7c474a2e3482 // indirect
-	honnef.co/go/tools v0.0.1-2020.1.4 // indirect
 	k8s.io/api v0.18.9
 	k8s.io/apiextensions-apiserver v0.18.9
 	k8s.io/apimachinery v0.18.9
