@@ -54,10 +54,8 @@ func (c *Controller) create(db *api.Redis) error {
 	}
 
 	// ensure ConfigMap for redis configuration file (i.e. redis.conf)
-	if db.Spec.Mode == api.RedisModeCluster {
-		if err := c.ensureRedisConfig(db); err != nil {
-			return err
-		}
+	if err := c.ensureRedisConfig(db); err != nil {
+		return err
 	}
 
 	// Ensure ClusterRoles for statefulsets
