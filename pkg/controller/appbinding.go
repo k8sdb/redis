@@ -76,8 +76,8 @@ func (c *Controller) ensureAppBinding(db *api.Redis) (kutil.VerbType, error) {
 		in.Spec.Parameters = &runtime.RawExtension{
 			Object: &appcat.StashAddon{
 				TypeMeta: metav1.TypeMeta{
-					Kind:       appcat.SchemeGroupVersion.String(),
-					APIVersion: "StashAddon",
+					APIVersion: appcat.SchemeGroupVersion.String(),
+					Kind:       "StashAddon",
 				},
 				Stash: redisVersion.Spec.Stash,
 			},
